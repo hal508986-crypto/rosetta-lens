@@ -7,3 +7,8 @@ src/**
 tsconfig.json
 **/*.map
 node_modules/**
+.claude/**
+CLAUDE.md
+summary_*.md
+samples/**
+package-lock.json
