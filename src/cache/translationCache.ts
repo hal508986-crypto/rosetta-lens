@@ -3,10 +3,14 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as crypto from 'crypto';
-import Database from 'better-sqlite3';
+// better-sqlite3はネイティブモジュールのため動的importを使う。
+// 静的importにするとElectronバージョン不一致でモジュール全体のロードが失敗し
+// activate()が呼ばれずコマンドが登録されない問題が起きる。
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SqliteDatabase = any;
 
 export class TranslationCache {
-    private db: Database.Database | null = null;
+    private db: SqliteDatabase | null = null;
     private readonly ttlMs: number;
 
     constructor(context: vscode.ExtensionContext) {
@@ -16,6 +20,10 @@ export class TranslationCache {
         this.ttlMs = ttlDays * 24 * 60 * 60 * 1000;
 
         try {
+            // 動的requireでネイティブモジュールのロード失敗を局所化する
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const Database = require('better-sqlite3');
+
             // 拡張機能のグローバルストレージパスを確保
             const storageUri = context.globalStorageUri;
             if (!fs.existsSync(storageUri.fsPath)) {
