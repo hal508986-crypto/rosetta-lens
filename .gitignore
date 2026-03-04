@@ -1,7 +1,6 @@
 node_modules/
 out/
 .vscode-test/
-*.vsix
 .env
 summary_*.md
 rosetta_cache.db
