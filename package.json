@@ -1,0 +1,109 @@
+{
+  "name": "rosetta-lens",
+  "displayName": "Rosetta Lens",
+  "description": "コードを破壊せず、表示層のみでLLMによる文脈依存の日本語翻訳を重畳するVS Code拡張",
+  "version": "0.1.0",
+  "publisher": "rosetta-lens",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "translation",
+    "japanese",
+    "overlay",
+    "llm",
+    "gemini",
+    "inlay-hints",
+    "code-reading",
+    "identifier",
+    "japanese-translation"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "rosetta-lens.toggle",
+        "title": "Rosetta Lens: Toggle",
+        "category": "Rosetta Lens"
+      },
+      {
+        "command": "rosetta-lens.extractSymbols",
+        "title": "Rosetta Lens: Extract Symbols (Debug)",
+        "category": "Rosetta Lens"
+      },
+      {
+        "command": "rosetta-lens.clearCache",
+        "title": "Rosetta Lens: Clear Translation Cache",
+        "category": "Rosetta Lens"
+      },
+      {
+        "command": "rosetta-lens.copyOriginal",
+        "title": "Rosetta Lens: Copy Original (English) Text",
+        "category": "Rosetta Lens"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "rosetta-lens.toggle",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Rosetta Lens",
+      "properties": {
+        "rosettaLens.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Google AI Studio の Gemini API キー"
+        },
+        "rosettaLens.geminiModel": {
+          "type": "string",
+          "default": "gemini-2.5-flash-preview-04-17",
+          "description": "使用する Gemini モデル名（例: gemini-2.5-flash-preview-04-17, gemini-2.5-pro）"
+        },
+        "rosettaLens.cacheTTLDays": {
+          "type": "number",
+          "default": 7,
+          "description": "翻訳キャッシュの有効期限（日数）"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "@vscode/test-electron": "^2.3.0",
+    "@vscode/vsce": "^3.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "better-sqlite3": "^12.6.2"
+  }
+}
