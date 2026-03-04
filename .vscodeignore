@@ -6,9 +6,16 @@ src/**
 .prettierrc
 tsconfig.json
 **/*.map
-node_modules/**
 .claude/**
 CLAUDE.md
 summary_*.md
 samples/**
 package-lock.json
+node_modules/.bin/**
+node_modules/@types/**
+node_modules/typescript/**
+node_modules/eslint/**
+node_modules/@typescript-eslint/**
+node_modules/@vscode/test-electron/**
+node_modules/prettier/**
+node_modules/@vscode/vsce/**
