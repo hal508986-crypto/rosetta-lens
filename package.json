@@ -3,7 +3,7 @@
   "displayName": "Rosetta Lens",
   "description": "コードを破壊せず、表示層のみでLLMによる文脈依存の日本語翻訳を重畳するVS Code拡張",
   "version": "0.1.0",
-  "publisher": "rosetta-lens",
+  "publisher": "Enadori",
   "engines": {
     "vscode": "^1.85.0"
   },
